@@ -1,0 +1,35 @@
+name: Send Email
+
+# 触发条件
+on:
+  schedule:
+    # 每天早上 9 点发邮件 (北京时间 UTC+8 → UTC = 1点)
+    - cron: '0 1 * * *'
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ 拉取仓库代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ 安装 Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      # 3️⃣ 安装依赖库
+      - name: Install dependencies
+        run: pip install yagmail python-dotenv
+
+      # 4️⃣ 运行发送邮件脚本
+      - name: Send email
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          QQ_AUTH_CODE: ${{ secrets.QQ_AUTH_CODE }}
+          QQ_RECEIVER_EMAIL: ${{ secrets.QQ_RECEIVER_EMAIL }}
+        run: python send_email.py
