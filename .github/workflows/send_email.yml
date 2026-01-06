@@ -32,4 +32,6 @@ jobs:
           EMAIL: ${{ secrets.EMAIL }}
           QQ_AUTH_CODE: ${{ secrets.QQ_AUTH_CODE }}
           QQ_RECEIVER_EMAIL: ${{ secrets.QQ_RECEIVER_EMAIL }}
-        run: python send_email.py
+        # run: python send_email.py
+        run: python $GITHUB_WORKSPACE/send_mail.py
+
