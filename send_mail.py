@@ -2,6 +2,10 @@
 from dotenv import load_dotenv
 import yagmail,os
 
+import time
+#当前时间
+time_now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
 load_dotenv()
 EMAIL= os.getenv("EMAIL")
 QQ_AUTH_CODE = os.getenv("QQ_AUTH_CODE")
@@ -15,7 +19,7 @@ def send_email(subject, contents):
     print("邮件发送成功")
 
 if __name__ == '__main__':
-    send_email("测试", "测试邮件")
+    send_email(f'定时邮件测试{time_now}', f'定时邮件测试{time_now}')
     
     
     
