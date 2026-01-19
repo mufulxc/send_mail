@@ -4,7 +4,7 @@ name: Send Email
 on:
   schedule:
     # 每天早上 9 点发邮件 (北京时间 UTC+8 → UTC = 1点)
-     - cron: ' *  10 * *'
+     - cron: ' 03  05 * *'
   workflow_dispatch:  # 允许手动触发
 
 jobs:
